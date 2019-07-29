@@ -1,5 +1,4 @@
 import { createStore } from "redux";
-import { stat } from "fs";
 
 const initiateState = {
   name: "",
@@ -18,6 +17,7 @@ export const UPDATE_AUTHOR_LAST = "UPDATE_AUTHOR_LAST";
 export const ADD_INGREDIENT = "ADD_INGREDIENT";
 export const ADD_INSTRUCTION = "ADD_INSTRUCTION";
 export const ADD_RECIPE = "ADD_RECIPE";
+export const RESET_FORM = "RESET_FORM";
 
 function reducer(state = initiateState, action) {
   const { type, payload } = action;
@@ -55,9 +55,22 @@ function reducer(state = initiateState, action) {
       };
       const newRecipes = [...state.recipes, recipe];
       return { ...state, recipes: newRecipes };
+    case RESET_FORM:
+      return {
+        ...state,
+        name: "",
+        category: "",
+        authorFirst: "",
+        authorLast: "",
+        ingredients: [],
+        instructions: []
+      };
     default:
       return state;
   }
 }
 
-export default createStore(reducer);
+export default createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);

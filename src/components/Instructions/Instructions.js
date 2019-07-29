@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import store, { ADD_INSTRUCTION, ADD_RECIPE } from "../../store";
+import store, { ADD_INSTRUCTION, ADD_RECIPE, RESET_FORM } from "../../store";
 
 class Instructions extends Component {
   constructor(props) {
@@ -36,10 +36,13 @@ class Instructions extends Component {
       input: ""
     });
   }
-  create() {
+  async create() {
     // Create new recipe in Redux state
-    store.dispatch({
+    await store.dispatch({
       type: ADD_RECIPE
+    })
+    store.dispatch({
+      type: RESET_FORM
     })
   }
   render() {
