@@ -18,6 +18,7 @@ export const ADD_INGREDIENT = "ADD_INGREDIENT";
 export const ADD_INSTRUCTION = "ADD_INSTRUCTION";
 export const ADD_RECIPE = "ADD_RECIPE";
 export const RESET_FORM = "RESET_FORM";
+// export const DELETE_RECIPE = "DELETE_RECIPE";
 
 function reducer(state = initiateState, action) {
   const { type, payload } = action;
@@ -36,6 +37,8 @@ function reducer(state = initiateState, action) {
     case ADD_INSTRUCTION:
       const newInstructions = [...state.instructions, payload];
       return { ...state, instructions: newInstructions };
+    // case DELETE_RECIPE:
+    //   return { ...state.recipes.filter(r => r.id !== payload.id)};
     case ADD_RECIPE:
       const {
         name,
